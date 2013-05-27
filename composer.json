@@ -1,0 +1,8 @@
+{
+    "name": "ircmaxell/protocol-lib",
+    "autoload": {
+        "psr-0": {
+            "ProtocolLib": "src"
+        }
+    }
+}
