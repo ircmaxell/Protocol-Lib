@@ -32,21 +32,21 @@ When using our helper, checks would look like this:
     $foo = new Foo;
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar'));
-    // True
+    // True - Empty interfaces *always* are implemented
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar2'));
-    // False
+    // False - Different Number Of Parameters
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar3'));
     // True
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar4'));
-    // True
+    // True - Parameter name doesn't matter
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar5'));
-    // False
+    // False - Typehint is different
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Foo'));
-    // LogicException Invalid Interface
+    // LogicException Invalid Interface - Because "Foo" is not an interface
 
 It's as simple as that!
