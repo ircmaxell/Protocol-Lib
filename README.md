@@ -32,7 +32,7 @@ When using our helper, checks would look like this:
     $foo = new Foo;
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar'));
-    // False
+    // True
 
     var_dump(ProtocolHelper::doesImplement($foo, 'Bar2'));
     // False
