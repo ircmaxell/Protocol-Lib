@@ -9,9 +9,18 @@ class ProtocolWrapperTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException LogicException
+     * @expectedException ProtocolLib\LogicException
+     * @expectedExceptionMessage Requested Interface Not Defined: NonExtistingClass
      */
-    public function testConstructFailure() {
+    public function testConstructNonExistingClassFailure() {
+        $obj = new ProtocolWrapper('NonExtistingClass');
+    }
+
+    /**
+     * @expectedException ProtocolLib\LogicException
+     * @expectedExceptionMessage Requested Interface Is Not An Interface: ProtocolLib\ProtocolWrapperTest
+     */
+    public function testConstructNonInterfaceFailure() {
         $obj = new ProtocolWrapper('ProtocolLib\ProtocolWrapperTest');
     }
 
@@ -25,6 +34,11 @@ class ProtocolWrapperTest extends \PHPUnit_Framework_TestCase {
         $obj = new ProtocolWrapper("Iterator");
         $ao = new \StdClass;
         $this->assertFalse($obj->doesImplement($ao));
+    }
+
+    public function testGetMethodProtocolReturnsMethodWrapper() {
+        $obj = new ProtocolWrapper("IteratorAggregate");
+        $this->assertTrue($obj->getMethodProtocol('getIterator')->doesMethodImplement('ArrayObject::getIterator'));
     }
 
 }
