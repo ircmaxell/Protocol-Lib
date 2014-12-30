@@ -67,7 +67,7 @@ class ProtocolMethodWrapper {
     }
 
     protected function checkParams(\ReflectionFunctionAbstract $function) {
-        if ($function->getNumberOfParameters() !== $function->getNumberOfParameters()) {
+        if ($this->reflector->getNumberOfParameters() !== $function->getNumberOfParameters()) {
             return false;
         }
         $params = $this->reflector->getParameters();
